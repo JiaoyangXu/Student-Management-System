@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StudentService from '../services/StudentService';
 
+import { useHistory } from "react-router-dom";
+
+
 export default class ListStudentComponent extends Component {
 
   constructor(props) {
@@ -10,7 +13,9 @@ export default class ListStudentComponent extends Component {
     this.state = {
       students: []
     }
+    this.addStudent = this.addStudent.bind(this);
   }
+
 
   componentDidMount() {
     StudentService.getStudents().then((res) => {
@@ -18,11 +23,23 @@ export default class ListStudentComponent extends Component {
     })
   }
 
+  addStudent() {
+    window.location.href = '/add-student'
+  }
+
+
 
   render() {
     return (
       <div>
         <h2 className="text-center"> StudentList</h2>
+        
+        <div className='row'>
+          <button className='btn btn-primary' onClick={this.addStudent}>
+            Add Student
+          </button>
+        </div>
+        
         <div className = "row">
           <table className = "table table-striped table-bordered">
             <thead>
