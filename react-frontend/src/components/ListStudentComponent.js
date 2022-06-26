@@ -14,6 +14,7 @@ export default class ListStudentComponent extends Component {
       students: []
     }
     this.addStudent = this.addStudent.bind(this);
+    this.updateStudent = this.updateStudent.bind(this);
   }
 
 
@@ -26,6 +27,11 @@ export default class ListStudentComponent extends Component {
   addStudent() {
     window.location.href = '/add-student'
   }
+
+  updateStudent(id) {
+    window.location.href = '/update-student/' + id
+  }
+
 
 
 
@@ -59,6 +65,7 @@ export default class ListStudentComponent extends Component {
                     <td> { students.firstName } </td>
                     <td> { students.lastName } </td>
                     <td> { students.emailId }</td>
+                    <td> <button type='button' className='btn btn-primary' onClick={ () => this.updateStudent(students.id)}>Update</button> </td>
                   </tr>
                 )
               }
